@@ -1,0 +1,27 @@
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+.title {
+  font-size: 32px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: rgb(114, 13, 13);
+  text-transform: uppercase;
+}
+
+.todo-list {
+  margin-top: 20px;
+  display: grid;
+  column-gap: 50px;
+  row-gap: 50px;
+  grid-template-columns: 300px 300px 300px;
+}
+
+.line {
+  border: 1px solid red;
+  grid-column: 1 / -1;
+}
