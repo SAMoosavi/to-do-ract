@@ -1,0 +1,13 @@
+.h-6 {
+  height: 1.5rem;
+}
+.w-6 {
+  width: 1.5rem;
+}
+.XColor {
+  color: #ff0000;
+  cursor: pointer;
+}
+.XColor:hover {
+  color: #bd0303;
+}
