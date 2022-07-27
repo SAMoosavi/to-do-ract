@@ -1,4 +1,5 @@
 import { Component } from "react";
+import uuid from 'react-uuid'
 import Todo from "./Todo.jsx";
 import "./App.css";
 import NewTodo from "./NewTodo.jsx";
@@ -48,8 +49,8 @@ class App extends Component {
     this.setState({ showNewTodo: false });
   };
 
-  deleteTodo = (e,id) => {
- let a = this.state.todos;
+  deleteTodo = (e, id) => {
+    let a = this.state.todos;
     for (let i = 0; i < this.state.todos.length; i++) {
       a[i].id == id ? a.splice(i, 1) : "";
     }
@@ -66,7 +67,7 @@ class App extends Component {
 
   creatNew = (text) => {
     const todo = {
-      id: this.state.todos.length,
+      id: uuid(),
       title: text,
       checked: false,
       time: +new Date().getTime(),
@@ -74,7 +75,7 @@ class App extends Component {
     this.setState({ todos: [todo, ...this.state.todos], showNewTodo: false });
     this.save([todo, ...this.state.todos]);
   };
-  save = (v) => { 
+  save = (v) => {
     localStorage.setItem("todos", JSON.stringify(v));
   };
 
