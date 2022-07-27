@@ -1,4 +1,4 @@
-import { useState, useEffect, Component } from "react";
+import { Component } from "react";
 import Todo from "./Todo.jsx";
 import "./App.css";
 import NewTodo from "./NewTodo.jsx";
@@ -48,6 +48,17 @@ class App extends Component {
     this.setState({ showNewTodo: false });
   };
 
+  deleteTodo = (e,id) => {
+    console.log('b',id);
+    let a = this.state.todos;
+    for (let i = 0; i < this.state.todos.length; i++) {
+      a[i].id == id ? a.splice(i, 1) : "";
+    }
+    this.setState({ todos: a });
+    this.sort();
+    this.save(a);
+  };
+
   btn = (
     <button className="btn" onClick={this.openNewTodo}>
       Create New Todo
@@ -56,7 +67,7 @@ class App extends Component {
 
   creatNew = (text) => {
     const todo = {
-      id: 5,
+      id: this.state.todos.length,
       title: text,
       checked: false,
       time: +new Date().getTime(),
@@ -97,12 +108,26 @@ class App extends Component {
         <div className="todo-list">
           {this.state.todos.map((r) => {
             if (r.checked == false)
-              return <Todo todo={r} key={r.id} onChecked={this.checking} />;
+              return (
+                <Todo
+                  todo={r}
+                  key={r.id}
+                  onChecked={this.checking}
+                  onDelete={this.deleteTodo}
+                />
+              );
           })}
           <div className="line"></div>
           {this.state.todos.map((r) => {
             if (r.checked == true)
-              return <Todo todo={r} key={r.id} onChecked={this.checking} />;
+              return (
+                <Todo
+                  todo={r}
+                  key={r.id}
+                  onChecked={this.checking}
+                  onDelete={this.deleteTodo}
+                />
+              );
           })}
         </div>
       </section>
