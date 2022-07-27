@@ -1,0 +1,64 @@
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 10;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+}
+
+.center .card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #feffee;
+  padding: 20px 40px;
+  border: none;
+  width: 50vw;
+}
+.btn-group {
+  display: flex;
+  width: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.btn-group .btn {
+  width: 50%;
+  margin: 0;
+  border-radius: 0;
+}
+.btn-group .btn:hover {
+  transform: scale(1);
+}
+.btn-group .btn:focus {
+  transform: scale(1);
+}
+.cansel {
+  background-color: rgb(128, 128, 128);
+}
+.cansel:hover {
+  background-color: rgb(85, 85, 85);
+}
+.cansel:focus {
+  background-color: rgb(75, 75, 75);
+}
+.input {
+  box-sizing: border-box;
+  padding: 20px 20px;
+  margin-bottom: 10px;
+  width: 100%;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0);
+  color: red;
+  border: 1px solid red;
+}
+.input:focus-visible {
+  outline: none;
+  border: 2px solid red;
+}
