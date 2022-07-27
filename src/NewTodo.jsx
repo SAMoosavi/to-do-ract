@@ -10,7 +10,7 @@ function NewTodo(props) {
   }
 
   return (
-    <div className="center">
+    <div className="centerB">
       <form className="card" onSubmit={submit}>
         <input type="text" name="todo" id="todo" ref={text} className="input" />
         <div className="btn-group">

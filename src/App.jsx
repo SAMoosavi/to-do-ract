@@ -1,37 +1,30 @@
 import { useState, useEffect, Component } from "react";
 import Todo from "./Todo.jsx";
 import "./App.css";
-import { render } from "react-dom";
+import NewTodo from "./NewTodo.jsx";
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      todos: [
-        { id: 1, title: "aaa", checked: false, time: +new Date().getTime() },
-        {
-          id: 2,
-          title: "bbbb",
-          checked: false,
-          time: +new Date().getTime() - 50,
-        },
-        {
-          id: 3,
-          title: "ccc",
-          checked: false,
-          time: +new Date().getTime() + 50,
-        },
-      ],
-    };
     if (!localStorage.getItem("todos")) localStorage.setItem("todos", "[]");
-    this.setState({ todos: JSON.parse(localStorage.getItem("todos")) });
+    let a = JSON.parse(localStorage.getItem("todos"));
+
+    a.sort((a, b) => {
+      return b.time - a.time;
+    });
+    this.state = {
+      todos: a,
+      showNewTodo: false,
+    };
+  }
+
+  sort = () => {
     let a = this.state.todos;
     a.sort((a, b) => {
       return b.time - a.time;
     });
     this.setState({ todos: a });
-
-  }
+  };
 
   checking = (element) => {
     const id = element.target.id;
@@ -43,18 +36,63 @@ class App extends Component {
       a = [this.state.todos[i], ...a];
     }
     this.setState({ todos: a });
+    this.sort();
+    this.save(a);
+  };
+
+  openNewTodo = (element) => {
+    this.setState({ showNewTodo: true });
+    element.target.blur();
+  };
+  closeNewTodo = () => {
+    this.setState({ showNewTodo: false });
+  };
+
+  btn = (
+    <button className="btn" onClick={this.openNewTodo}>
+      Create New Todo
+    </button>
+  );
+
+  creatNew = (text) => {
+    const todo = {
+      id: 5,
+      title: text,
+      checked: false,
+      time: +new Date().getTime(),
+    };
+    this.setState({ todos: [todo, ...this.state.todos], showNewTodo: false });
+    this.save([todo, ...this.state.todos]);
+  };
+  save = (v) => {
+    console.log(v);
+    localStorage.setItem("todos", JSON.stringify(v));
   };
 
   render() {
     if (this.state.todos.length == 0) {
       return (
-        <div className="center">
-          <h1 className="title">چیزی یافت نشد</h1>
-        </div>
+        <section>
+          {this.btn}
+          {this.state.showNewTodo ? (
+            <NewTodo onSubmit={this.creatNew} onCansle={this.closeNewTodo} />
+          ) : (
+            ""
+          )}
+          <div className="center">
+            <h1 className="title">چیزی یافت نشد</h1>
+          </div>
+        </section>
       );
     }
     return (
       <section>
+        {this.btn}
+        {this.state.showNewTodo ? (
+          <NewTodo onSubmit={this.creatNew} onCansle={this.closeNewTodo} />
+        ) : (
+          ""
+        )}
         <div className="title">TODOS</div>
         <div className="todo-list">
           {this.state.todos.map((r) => {
