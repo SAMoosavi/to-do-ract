@@ -49,8 +49,7 @@ class App extends Component {
   };
 
   deleteTodo = (e,id) => {
-    console.log('b',id);
-    let a = this.state.todos;
+ let a = this.state.todos;
     for (let i = 0; i < this.state.todos.length; i++) {
       a[i].id == id ? a.splice(i, 1) : "";
     }
@@ -75,8 +74,7 @@ class App extends Component {
     this.setState({ todos: [todo, ...this.state.todos], showNewTodo: false });
     this.save([todo, ...this.state.todos]);
   };
-  save = (v) => {
-    console.log(v);
+  save = (v) => { 
     localStorage.setItem("todos", JSON.stringify(v));
   };
 

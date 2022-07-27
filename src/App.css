@@ -20,9 +20,22 @@
 .todo-list {
   margin-top: 20px;
   display: grid;
-  column-gap: 50px;
+  column-gap: 1%;
   row-gap: 50px;
-  grid-template-columns: 300px 300px 300px;
+  grid-template-columns: 19% 19% 19% 19% 19%;
+}
+
+
+@media screen and (max-width: 900px) {
+  .todo-list {
+    grid-template-columns: 32% 32% 32% ;
+  }
+}
+@media screen and (max-width: 600px) {
+  .todo-list {
+    grid-template-columns: 100%;
+    column-gap: 0;
+  }
 }
 
 .line {

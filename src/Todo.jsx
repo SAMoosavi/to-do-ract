@@ -1,8 +1,7 @@
 import "./Todo.css";
 import XIcon from "./XIcon";
 function Todo(props) {
-  function deleteTodo(e) {
-    console.log('a',e,props.todo.id);
+  function deleteTodo(e) { 
     props.onDelete(e,props.todo.id);
   }
   return (
